@@ -8,7 +8,7 @@
 
 body{
     background-color: aquamarine;
-    min-height: 100vh; /* Corrigido de 100vg para 100vh */
+    min-height: 100vh;
 }
 
 .interface{
@@ -17,9 +17,25 @@ body{
     padding: 0 4%;
 }
 
+.flex{
+    display: flex;
+}
+
+.mrs-contato button{
+    padding: 10px 40px;
+    font-size: 18px;
+    font-weight: 600;   
+    background-color: blueviolet;
+    color: #fff;
+    border: 0;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .2s;
+}
+
 /* Estilo Cabeçalho */
 header{
-    padding: 40px 0; /* Removi o 4% lateral aqui para não somar com o da .interface */
+    padding: 40px 0;
 }
 
 header > .interface{
@@ -42,25 +58,42 @@ header a:hover{
 }
 
 header nav ul{
-    display: flex;       /* Alinha os itens do menu lado a lado */
+    display: flex;    
     list-style-type: none;
-    gap: 40px;           /* Espaçamento uniforme entre os itens */
+    gap: 40px;       
 }
 
-/* Estilo do Botão */
-header .mrs-contato button{
-    padding: 10px 40px;
-    font-size: 18px;
-    font-weight: 600;    /* Removido o 'px' que estava errado */
-    background-color: blueviolet;
-    color: #fff;
-    border: 0;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: .2s;
-}
-
-header .mrs-contato button:hover{
+.mrs-contato button:hover{
     box-shadow: 0px 0px 15px #1ca0ff;
     transform: scale(1.05);
+}
+
+/* Estilo do Topo do Site */
+section.topo-do-site{
+    padding: 40px 4%;
+}
+
+section.topo-do-site .flex{
+    align-items: center;
+    justify-content: center;
+    gap: 90px;
+}
+
+.topo-do-site h1{
+    color: black;
+    font-size: 42px;
+    line-height: 40px;
+}
+
+.topo-do-site .txt-topo-do-site h1 span{
+    color: #1ca0ff;
+}
+
+.topo-do-site .txt-topo-do-site p{
+    color: #fff;
+    margin: 40px 0;
+}
+
+@keyframes flutuar{
+    
 }
