@@ -4,72 +4,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--Google Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <!--Google Fonts-->
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <!-- Bootstrap Icons -->
 
     <script src="menu.js" defer></script>
-
-    <title>Portifólio Rubim</title>
-
+    <title>Portfólio Rubim</title>
 </head>
 
-<body>
-
+<body id="topo">
     <header>
         <div class="interface">
             <div class="logo">
                 <a href="#">
-                    <img src="" alt="Logo Cabeçalho">
+                    <img src="images/Logo cabeçalho.png" alt="Logo Cabeçalho">
                 </a>
             </div>
 
             <nav class="menu-desktop">
                 <ul>
-                    <li><a href="#">Início</a></li>
-                    <li><a href="#">Especialidades</a></li>
-                    <li><a href="#">Sobre</a></li>
-                    <li><a href="#">Projetos</a></li>
+                    <li><a href="#topo">Início</a></li>
+                    <li><a href="#especialidades">Especialidades</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#portfolio">Projetos</a></li>
                 </ul>
             </nav>
 
             <div class="mrs-contato">
-                <a href="#">
+                <a href="#contato">
                     <button>Contato</button>
                 </a>
-            </div> <!--mrs-contato-->
+            </div>
+
+            <button id="mrs-tema" class="mrs-tema">
+                <i class="bi bi-moon-fill"></i>
+            </button>
 
             <div class="mrs-abrir-menu" id="mrs-menu">
                 <i class="bi bi-list"></i>
             </div>
 
             <div class="menu-mobile" id="menu-mobile">
-                <div class="mrs-fechar">
+                <div class="mrs-fechar" id="mrs-fechar">
                     <i class="bi bi-x"></i>
-                </div> <!--mrs-fechar-->
+                </div>
 
                 <nav>
                     <ul>
-                        <li><a href="#">Início</a></li>
-                        <li><a href="#">Especialidades</a></li>
-                        <li><a href="#">Sobre</a></li>
-                        <li><a href="#">Projetos</a></li>
-                        <li><a href="#">Contato</a></li>
+                        <li><a href="#topo">Início</a></li>
+                        <li><a href="#especialidades">Especialidades</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#portfolio">Projetos</a></li>
+                        <li><a href="#contato">Contato</a></li>
                     </ul>
                 </nav>
+            </div>
 
-            </div> <!--menu mobile-->
-
-            <div class="overlay-menu" id="overlay-menu">
-            </div><!--overlay-menu-->
-
-        </div> <!--interface-->
+            <div class="overlay-menu" id="overlay-menu"></div>
+        </div>
     </header>
 
     <main>
@@ -80,26 +74,23 @@
                         <h1>Loren Ipson<span>.</span></h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                             labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                            anim id est laborum.</p>
+                            laboris nisi ut aliquip ex ea commodo consequat.</p>
 
                         <div class="mrs-contato">
                             <a href="#">
                                 <button>Entre em contato</button>
                             </a>
                         </div>
-                    </div><!--txt-topo-site-->
+                    </div>
 
                     <div class="img-topo-do-site">
-                        <img src="" alt="COLOCAR IMAGEM">
-                    </div><!--img-topo-site-->
-                </div><!--flex-->
-            </div><!--interface-->
-        </section> <!--topo-do-site-->
+                        <img src="images/Logo cabeçalho.png" alt="COLOCAR IMAGEM">
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <section class="especialidades">
+        <section class="especialidades" id="especialidades">
             <div class="interface">
                 <h2 class="titulo">MINHAS <span>ESPECIALIDADES.</span></h2>
                 <div class="flex">
@@ -107,74 +98,77 @@
                         <i class="bi bi-braces"></i>
                         <h3>Loren Ipson</h3>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum consectetur rem commodi
-                            repudiandae dolor, quod, soluta sapiente corporis deserunt perspiciatis aliquam ducimus
-                            pariatur aperiam quaerat. Quidem delectus vel natus tenetur!</p>
-                    </div><!--especialides-box-->
+                            repudiandae dolor.</p>
+                    </div>
 
                     <div class="especialidades-box">
                         <i class="bi bi-filetype-java"></i>
                         <h3>Loren Ipson</h3>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum consectetur rem commodi
-                            repudiandae dolor, quod, soluta sapiente corporis deserunt perspiciatis aliquam ducimus
-                            pariatur aperiam quaerat. Quidem delectus vel natus tenetur!</p>
-                    </div><!--especialides-box-->
+                            repudiandae dolor.</p>
+                    </div>
 
                     <div class="especialidades-box">
                         <i class="bi bi-brightness-alt-low-fill"></i>
                         <h3>Loren Ipson</h3>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum consectetur rem commodi
-                            repudiandae dolor, quod, soluta sapiente corporis deserunt perspiciatis aliquam ducimus
-                            pariatur aperiam quaerat. Quidem delectus vel natus tenetur!</p>
-                    </div><!--especialides-box-->
-                </div><!--flex-->
-            </div><!--interface-->
-        </section> <!--especialidades-->
+                            repudiandae dolor.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <section class="sobre">
+        <section class="sobre" id="sobre">
             <div class="interface">
                 <div class="flex">
                     <div class="img-sobre">
-                        <img src="" alt="FOTO SOBRE">
-                    </div><!--img-sobre-->
+                        <img src="images/Logo cabeçalho.png" alt="FOTO SOBRE">
+                    </div>
                     <div class="txt-sobre">
                         <h2>MUITO PRAZER, <span>SOU MATHEUS RUBIM.</span></h2>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quae, dicta doloribus expedita
-                            iure consequuntur quibusdam minima praesentium aliquam cupiditate corporis adipisci
-                            obcaecati dignissimos consectetur. Maxime expedita iure qui unde.</p>
+                            iure consequuntur quibusdam minima praesentium.</p>
                         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate voluptates voluptatum
-                            aperiam ea qui architecto adipisci expedita asperiores reiciendis error facilis quidem
-                            aliquam sunt molestiae pariatur atque, neque esse ab.</p>
+                            aperiam ea qui architecto adipisci.</p>
                         <div class="mrs-social">
-                            <a href="#"><button><i class="bi bi-instagram"></i></button></a>
-                            <a href="#"><button><i class="bi bi-linkedin"></i></button></a>
-                            <a href="#"><button><i class="bi bi-github"></i></button></a>
-                        </div><!--mrs-social-->
-                    </div><!--txt-sobre-->
-                </div> <!--flex-->
-            </div> <!--interface -->
-        </section> <!--sobre-->
+                            <a href="#" class="mrs-btn-social" aria-label="Instagram"><i
+                                    class="bi bi-instagram"></i></a>
+                            <a href="#" class="mrs-btn-social" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                            <a href="#" class="mrs-btn-social" aria-label="GitHub"><i class="bi bi-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <section class="portfolio">
+        <section class="portfolio" id="portfolio">
             <div class="interface">
                 <h2 class="titulo">MEU <span>PORTFOLIO.</span></h2>
                 <div class="flex">
-                    <div class="img-port" style="background-image: url(images/);">
-                        <div class="overlay">QR Code</div>
-                    </div> <!--Selecionar imagem-->
-                    <div class="img-port" style="background-image: url(images/);">
-                        <div class="overlay">Projeto 2</div>
-                    </div>
-                    <div class="img-port" style="background-image: url(images/);">
-                        <div class="overlay">Projeto 3</div>
-                    </div>
-                </div> <!--flex-->
-            </div> <!--interface-->
-        </section> <!--portfolio-->
+                    <a href="https://qrcode-front-rust.vercel.app/" target="_blank">
+                        <div class="img-port" style="background-image: url(images/QRCode.png);">
+                            <div class="overlay">Gerador de QR Code</div>
+                        </div>
+                    </a>
 
-        <section class="formulario">
+                    <a href="LINK_DO_REPOSITORIO_DO_SUDOKU" target="_blank">
+                        <div class="img-port" style="background-image: url(images/imagem-do-sudoku.png);">
+                            <div class="overlay">Sudoku (Java Swing)</div>
+                        </div>
+                    </a>
+
+                    <a href="LINK_DO_PROJETO_3" target="_blank">
+                        <div class="img-port" style="background-image: url(images/nome-da-imagem-3.jpg);">
+                            <div class="overlay">Projeto 3</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="formulario" id="contato">
             <div class="interface">
                 <h2 class="titulo">FALE <span>COMIGO.</span></h2>
-
                 <form action="">
                     <input type="text" name="" id="" placeholder="Seu nome completo:" required>
                     <input type="text" name="" id="" placeholder="Seu e-mail:" required>
@@ -182,8 +176,8 @@
                     <textarea name="" id="" placeholder="Sua mensagem" required></textarea>
                     <div class="mrs-enviar"><input type="submit" value="ENVIAR"></div>
                 </form>
-            </div> <!--interface-->
-        </section> <!--fomulario-->
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -191,23 +185,21 @@
             <div class="line-footer">
                 <div class="flex">
                     <div class="logo-footer">
-                        <img src="" alt="Logotipo MRS">
-                    </div> <!--logo-footer-->
+                        <img src="images/Logo cabeçalho.png" alt="Logotipo MRS">
+                    </div>
                     <div class="mrs-social">
-                        <a href="#"><button><i class="bi bi-instagram"></i></button></a>
-                        <a href="#"><button><i class="bi bi-linkedin"></i></button></a>
-                        <a href="#"><button><i class="bi bi-github"></i></button></a>
-                    </div><!--mrs-social-->
+                        <a href="#" class="mrs-btn-social" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="mrs-btn-social" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="mrs-btn-social" aria-label="GitHub"><i class="bi bi-github"></i></a>
+                    </div>
                 </div>
-            </div> <!--line-footer-->
-
+            </div>
             <div class="line-footer borda">
                 <p><i class="bi bi-envelope-at-fill"></i> <a
                         href="mailto:contatorubimze@gmail.com">contatorubimze@gmail.com</a></p>
-            </div> <!--line-footer-->
-        </div> <!--interface-->
+            </div>
+        </div>
     </footer>
-
 </body>
 
 </html>
