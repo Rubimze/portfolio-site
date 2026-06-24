@@ -43,7 +43,7 @@ h2.titulo span{
     color: crimson;
 }
 
-button:hover{
+button:hover, form .mrs-enviar input:hover{
     box-shadow: 0px 0px 15px #1ca0ff;
     transform: scale(1.05);
 }
@@ -239,4 +239,53 @@ section.portfolio .flex{
 
 .overlay:hover{
     opacity: 1;
+}
+
+/* ESTILO FO DORMULÁRIO DE CONTATO */
+section.formulario{
+    padding: 80px 4%;
+}
+
+form{
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+form input, form textarea{
+    width: 100%;
+    background-color: #00d9ff;
+    border: 0;
+    outline: 0;
+    padding: 20px 15px;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 18px;
+}
+
+form input::placeholder{
+    color: #002fff;
+}
+
+form textarea{
+    resize: none;
+    max-height: 200px;
+}
+
+form .mrs-enviar{
+    margin-top: 15px;
+    text-align: center;
+}
+
+form .mrs-enviar input{
+    width: 120px;
+    background-color: #00d9ff;
+    color: #ff3333;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2;
 }
