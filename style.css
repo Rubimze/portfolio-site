@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: aquamarine;
+    background-color: rgb(255, 255, 255);
     min-height: 100vh;
 }
 
@@ -25,8 +25,8 @@ body {
     padding: 10px 40px;
     font-size: 18px;
     font-weight: 600;
-    background-color: blueviolet;
-    color: #fff;
+    background-color: rgb(19, 149, 255);
+    color: #ffffff;
     border: 0;
     border-radius: 30px;
     cursor: pointer;
@@ -34,13 +34,13 @@ body {
 }
 
 h2.titulo {
-    color: #fff;
+    color: #4c4d8a;
     font-size: 38px;
     text-align: center;
 }
 
 h2.titulo span {
-    color: crimson;
+    color: rgb(78, 124, 211);
 }
 
 button:hover,
@@ -68,15 +68,85 @@ header a {
     transition: .2s;
 }
 
-header a:hover {
-    color: #fff;
+header nav.menu-desktop a:hover {
+    color: #1ca0ff;
     transform: scale(1.05);
 }
 
 header nav ul {
-    display: flex;
     list-style-type: none;
-    gap: 40px;
+}
+
+header nav.menu-desktop ul li {
+    display: inline-block;
+    padding: 0 40px;
+}
+
+/* Estilo do menu mobile */
+.mrs-abrir-menu i {
+    color: #002fff;
+    font-size: 40px;
+}
+
+.menu-mobile {
+    background-color: #b8f4ff;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 999999;
+    width: 0%;
+    overflow: hidden;
+    transition: .4s;
+}
+
+.menu-mobile.abrir-menu{
+    width: 70%;
+}
+
+.menu-mobile.abrir-menu ~ .overlay-menu{
+    display: block;
+}
+
+.menu-mobile .mrs-fechar {
+    padding: 20px 5%;
+}
+
+.menu-mobile .mrs-fechar i {
+    color: #000000;
+    font-size: 30px;
+}
+
+.menu-mobile nav ul {
+    text-align: right;
+}
+
+.menu-mobile nav ul li a {
+    color: #000000;
+    font-size: 20px;
+    font-weight: 550;
+    padding: 20px 8%;
+    display: block;
+}
+
+.menu-mobile nav ul li a:hover {
+    background-color: #00d9ff;
+    color: #0066ff;
+}
+
+.overlay-menu {
+    background-color: rgba(0, 0, 0, 0.274);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 888888;
+    display: none;
+}
+
+.btn-abrir-menu {
+    display: none;
 }
 
 /* Estilo do Topo do Site */
@@ -116,9 +186,8 @@ section.topo-do-site .flex {
     }
 
     100% {
-        top: 30px
+        top: 30px;
     }
-
 }
 
 /* ESTILO DAS ESPECIALIDADES */
@@ -290,7 +359,7 @@ form .mrs-enviar input {
     color: #ff3333;
     font-weight: 700;
     cursor: pointer;
-    transition: 0.2;
+    transition: 0.2s;
 }
 
 /* ESTILO DO RODAPE */
@@ -330,6 +399,11 @@ footer .line-footer p a {
         flex-direction: column;
     }
 
+    h2.titulo {
+        font-size: 34px;
+        line-height: 30px;
+    }
+
     .topo-do-site .flex {
         flex-direction: column-reverse;
     }
@@ -360,5 +434,53 @@ footer .line-footer p a {
     /* ESPECIALIDADE */
     section.especialidades {
         padding: 40px 8%;
+    }
+
+    /* SOBRE */
+    section.sobre {
+        padding: 80px 8%;
+    }
+
+    .sobre .txt-sobre h2 {
+        font-size: 34px;
+        line-height: 35px;
+        text-align: center;
+    }
+
+    .mrs-social {
+        text-align: center;
+    }
+
+    .img-sobre img {
+        width: 100%;
+    }
+
+    /* PORTFOLIO */
+    section.portfolio {
+        padding: 80px 8%;
+    }
+
+    .img-port {
+        width: 100%;
+        max-width: 360px;
+        margin: 0 auto;
+    }
+
+    section.portfolio .flex {
+        gap: 60px;
+    }
+
+    /* RODAPE */
+    footer .flex {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    footer .line-footer {
+        text-align: center;
+    }
+
+    .btn-abrir-menu {
+        display: block;
     }
 }
