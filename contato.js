@@ -25,7 +25,7 @@ if (formContato) {
             mensagem: document.getElementById('mensagem').value
         };
 
-        fetch('http://localhost:8080/api/contato', {
+        fetch('https://portfolio-api-kg2u.onrender.com/api/contato', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
