@@ -53,9 +53,9 @@ body {
 
 /* Container principal para limitar a largura do conteúdo e centralizar */
 .interface {
-    max-width: 1280px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 4%;
+    padding: 0 20px;
 }
 
 /* Classe utilitária para alinhamento rápido */
@@ -456,12 +456,12 @@ section.formulario {
 }
 
 form {
-    max-width: 500px;
-    margin: 0 auto;
+    max-width: 650px;  /* Aumentamos de 500px para 650px */
+    margin: 40px auto 0 auto;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     margin-top: 40px;
 }
 
