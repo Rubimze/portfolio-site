@@ -99,24 +99,29 @@ form .mrs-enviar input:hover {
 ========================================== */
 /* Fixa o cabeçalho no topo (sticky) com transição de movimento e sombra */
 header {
-    padding: 20px 0; 
+    padding: 20px 0;
     position: sticky;
     top: 0;
     z-index: 9999;
-    background-color: var(--bg-main); 
+    background-color: var(--bg-main);
     transition: top 0.4s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 /* Classes controladas pelo JS para ocultar/mostrar o menu ao rolar */
-.header-escondido { top: -150px; }
-.header-com-sombra { box-shadow: 0 4px 15px var(--shadow); }
+.header-escondido {
+    top: -150px;
+}
+
+.header-com-sombra {
+    box-shadow: 0 4px 15px var(--shadow);
+}
 
 header .logo img {
     max-width: 150px;
     justify-content: center;
 }
 
-header > .interface {
+header>.interface {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -135,7 +140,10 @@ header nav.menu-desktop a:hover {
     transform: scale(1.05);
 }
 
-header nav ul { list-style-type: none; }
+header nav ul {
+    list-style-type: none;
+}
+
 header nav.menu-desktop ul li {
     display: inline-block;
     padding: 0 40px;
@@ -156,19 +164,21 @@ header nav.menu-desktop ul li {
     max-width: 500px;
     transform: translateX(100%);
     overflow: hidden;
-    transition: transform 0.4s ease-in-out; 
+    transition: transform 0.4s ease-in-out;
 }
 
 /* Classe ativada via JS para deslizar o menu para dentro da tela */
 .menu-mobile.abrir-menu {
-    transform: translateX(0); 
+    transform: translateX(0);
 }
 
-.menu-mobile.abrir-menu ~ .overlay-menu { display: block; }
+.menu-mobile.abrir-menu~.overlay-menu {
+    display: block;
+}
 
 .menu-mobile .mrs-fechar {
     padding: 20px 5%;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 .menu-mobile .mrs-fechar i {
@@ -176,7 +186,9 @@ header nav.menu-desktop ul li {
     font-size: 30px;
 }
 
-.menu-mobile nav ul { text-align: right; }
+.menu-mobile nav ul {
+    text-align: right;
+}
 
 .menu-mobile nav ul li a {
     color: var(--text-main);
@@ -207,7 +219,7 @@ header nav.menu-desktop ul li {
 /* Ícone sanduíche (oculto no desktop) */
 .mrs-abrir-menu {
     cursor: pointer;
-    display: none; 
+    display: none;
 }
 
 .mrs-abrir-menu i {
@@ -227,7 +239,7 @@ header nav.menu-desktop ul li {
     background: transparent;
     border: none;
     outline: none;
-    padding: 0; 
+    padding: 0;
     font-size: 26px;
     color: var(--text-main);
     cursor: pointer;
@@ -241,20 +253,26 @@ header nav.menu-desktop ul li {
     border-radius: 50%;
 }
 
-.mrs-tema i { line-height: 0; display: flex; }
+.mrs-tema i {
+    line-height: 0;
+    display: flex;
+}
 
 .mrs-tema:hover {
     color: var(--accent);
     transform: scale(1.1);
-    box-shadow: none !important; 
-    background-color: var(--input-bg); 
+    box-shadow: none !important;
+    background-color: var(--input-bg);
 }
 
 /* ==========================================
    5. SEÇÕES DO SITE (MAIN)
 ========================================== */
 /* --- 5.1 TOPO DO SITE --- */
-section.topo-do-site { padding: 40px 4%; }
+section.topo-do-site {
+    padding: 40px 4%;
+}
+
 section.topo-do-site .flex {
     align-items: center;
     justify-content: center;
@@ -267,7 +285,10 @@ section.topo-do-site .flex {
     line-height: 40px;
 }
 
-.topo-do-site .txt-topo-do-site h1 span { color: var(--accent); }
+.topo-do-site .txt-topo-do-site h1 span {
+    color: var(--accent);
+}
+
 .topo-do-site .txt-topo-do-site p {
     color: var(--text-muted);
     margin: 40px 0;
@@ -278,14 +299,25 @@ section.topo-do-site .flex {
     position: relative;
     animation: flutuar 2s ease-in-out infinite alternate;
 }
+
 @keyframes flutuar {
-    0% { top: 0; }
-    100% { top: 30px; }
+    0% {
+        top: 0;
+    }
+
+    100% {
+        top: 30px;
+    }
 }
 
 /* --- 5.2 ESPECIALIDADES --- */
-section.especialidades { padding: 40px 4%; }
-section.especialidades .flex { gap: 60px; }
+section.especialidades {
+    padding: 40px 4%;
+}
+
+section.especialidades .flex {
+    gap: 60px;
+}
 
 .especialidades .especialidades-box {
     color: var(--text-main);
@@ -301,21 +333,45 @@ section.especialidades .flex { gap: 60px; }
     box-shadow: 0 0 20px var(--shadow);
 }
 
-.especialidades .especialidades-box i { font-size: 70px; color: var(--accent); }
-.especialidades .especialidades-box h3 { font-size: 28px; margin: 15px 0; }
+.especialidades .especialidades-box i {
+    font-size: 70px;
+    color: var(--accent);
+}
+
+.especialidades .especialidades-box h3 {
+    font-size: 28px;
+    margin: 15px 0;
+}
 
 /* --- 5.3 SOBRE --- */
-section.sobre { padding: 80px 4%; }
-section.sobre .flex { align-items: center; gap: 60px; }
-.sobre .txt-sobre { color: var(--text-muted); }
+section.sobre {
+    padding: 80px 4%;
+}
+
+section.sobre .flex {
+    align-items: center;
+    gap: 60px;
+}
+
+.sobre .txt-sobre {
+    color: var(--text-muted);
+}
+
 .sobre .txt-sobre h2 {
     font-size: 40px;
     line-height: 40px;
     margin-bottom: 30px;
 }
 
-.sobre .txt-sobre h2 span { color: var(--accent); display: block; }
-.sobre .txt-sobre p { margin: 20px 0; text-align: justify; }
+.sobre .txt-sobre h2 span {
+    color: var(--accent);
+    display: block;
+}
+
+.sobre .txt-sobre p {
+    margin: 20px 0;
+    text-align: justify;
+}
 
 /* Estilo dos botões de redes sociais */
 .mrs-social .mrs-btn-social {
@@ -344,30 +400,40 @@ section.portfolio {
     padding: 80px 4%;
     box-shadow: 0 0 40px 10px var(--shadow);
 }
+
 section.portfolio .flex {
     justify-content: space-around;
     margin-top: 60px;
 }
+
 /* Evita quebra do layout Flexbox ao usar links */
-section.portfolio .flex a { display: block; text-decoration: none; }
+section.portfolio .flex a {
+    display: block;
+    text-decoration: none;
+}
 
 .img-port {
     width: 360px;
     height: 460px;
     background-size: cover;
     background-position: 100% 0%;
-    transition: background-position 0.5s ease-in-out; /* Anima o pan da imagem */
+    transition: background-position 0.5s ease-in-out;
+    /* Anima o pan da imagem */
     cursor: pointer;
     border-radius: 40px;
     position: relative;
 }
 
-.img-port:hover { background-position: 100% 100%; }
+.img-port:hover {
+    background-position: 100% 100%;
+}
 
 .overlay {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-color: var(--overlay);
     border-radius: 40px;
     display: flex;
@@ -379,10 +445,16 @@ section.portfolio .flex a { display: block; text-decoration: none; }
     opacity: 0;
     transition: .5s;
 }
-.overlay:hover { opacity: 1; }
+
+.overlay:hover {
+    opacity: 1;
+}
 
 /* --- 5.5 FORMULÁRIO DE CONTATO --- */
-section.formulario { padding: 80px 4%; }
+section.formulario {
+    padding: 80px 4%;
+}
+
 form {
     max-width: 500px;
     margin: 0 auto;
@@ -392,20 +464,39 @@ form {
     gap: 10px;
     margin-top: 40px;
 }
-form input, form textarea {
+
+form input,
+form textarea {
     width: 100%;
     background-color: var(--input-bg);
-    border: 0; outline: 0;
+    border: 0;
+    outline: 0;
     padding: 20px 15px;
     border-radius: 15px;
     color: var(--text-main);
     font-size: 18px;
 }
-form input::placeholder, form textarea::placeholder { color: var(--text-muted); }
-form textarea { resize: none; height: 200px; }
-form .mrs-enviar { margin-top: 15px; text-align: center; }
+
+form input::placeholder,
+form textarea::placeholder {
+    color: var(--text-muted);
+}
+
+form textarea {
+    resize: none;
+    height: 200px;
+}
+
+form .mrs-enviar {
+    margin-top: 15px;
+    text-align: center;
+}
+
 form .mrs-enviar input {
-    width: 120px;
+    width: auto;
+    min-width: 160px;
+    white-space: nowrap;
+    padding: 15px 30px;
     background-color: var(--accent);
     color: #ffffff;
     font-weight: 700;
@@ -420,41 +511,151 @@ footer {
     padding: 40px 4%;
     box-shadow: 0 0 40px 10px var(--shadow);
 }
-footer .flex { justify-content: space-between; }
-footer .line-footer { padding: 20px 0; }
-.borda { border-top: 2px solid var(--accent); }
-footer .line-footer p i, footer .line-footer p a { color: var(--accent); }
+
+footer .flex {
+    justify-content: space-between;
+}
+
+footer .line-footer {
+    padding: 20px 0;
+}
+
+.borda {
+    border-top: 2px solid var(--accent);
+}
+
+footer .line-footer p i,
+footer .line-footer p a {
+    color: var(--accent);
+}
 
 /* ==========================================
-   7. RESPONSIVIDADE (Telas Menores)
+  7. FEEDBACK DO FORMULÁRIO
+========================================== */
+.msg-retorno {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    display: none;
+    /* Escondido por padrão */
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Classe ativada via JS para Sucesso */
+.msg-sucesso {
+    display: block;
+    opacity: 1;
+    background-color: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+    border: 1px solid #22c55e;
+}
+
+/* Classe ativada via JS para Erro */
+.msg-erro {
+    display: block;
+    opacity: 1;
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid #ef4444;
+}
+
+/* ==========================================
+   8. RESPONSIVIDADE (Telas Menores)
 ========================================== */
 @media screen and (max-width: 1020px) {
+
     /* Empilha os elementos verticalmente */
-    .flex { flex-direction: column; }
-    h2.titulo { font-size: 34px; line-height: 30px; }
-    
+    .flex {
+        flex-direction: column;
+    }
+
+    h2.titulo {
+        font-size: 34px;
+        line-height: 30px;
+    }
+
     /* Inverte a ordem: imagem acima do texto no topo */
-    .topo-do-site .flex { flex-direction: column-reverse; }
-    
+    .topo-do-site .flex {
+        flex-direction: column-reverse;
+    }
+
     /* Esconde o menu desktop e revela o sanduíche */
-    .menu-desktop, header .mrs-contato { display: none; }
-    .mrs-abrir-menu { display: block; }
+    .menu-desktop,
+    header .mrs-contato {
+        display: none;
+    }
+
+    .mrs-abrir-menu {
+        display: block;
+    }
 
     /* Ajuste de posições de botões para mobile */
-    .mrs-tema { margin-left: auto; margin-right: 20px; }
-    .topo-do-site .txt-topo-do-site .mrs-contato { text-align: center; }
+    .mrs-tema {
+        margin-left: auto;
+        margin-right: 20px;
+    }
+
+    .topo-do-site .txt-topo-do-site .mrs-contato {
+        text-align: center;
+    }
 
     /* Ajustes gerais de espaçamento e tamanho */
-    section.topo-do-site .flex { gap: 40px; }
-    section.topo-do-site { padding: 20px 8%; }
-    .topo-do-site h1 { font-size: 30px; }
-    .topo-do-site .img-topo-do-site img { width: 100%; }
-    section.especialidades, section.sobre, section.portfolio { padding: 40px 8%; }
-    .sobre .txt-sobre h2 { font-size: 34px; line-height: 35px; text-align: center; }
-    .mrs-social { text-align: center; }
-    .img-sobre img, .img-port { width: 100%; }
-    .img-port { max-width: 360px; margin: 0 auto; }
-    section.portfolio .flex { gap: 60px; }
-    footer .flex { flex-direction: column; gap: 20px; }
-    footer .line-footer { text-align: center; }
+    section.topo-do-site .flex {
+        gap: 40px;
+    }
+
+    section.topo-do-site {
+        padding: 20px 8%;
+    }
+
+    .topo-do-site h1 {
+        font-size: 30px;
+    }
+
+    .topo-do-site .img-topo-do-site img {
+        width: 100%;
+    }
+
+    section.especialidades,
+    section.sobre,
+    section.portfolio {
+        padding: 40px 8%;
+    }
+
+    .sobre .txt-sobre h2 {
+        font-size: 34px;
+        line-height: 35px;
+        text-align: center;
+    }
+
+    .mrs-social {
+        text-align: center;
+    }
+
+    .img-sobre img,
+    .img-port {
+        width: 100%;
+    }
+
+    .img-port {
+        max-width: 360px;
+        margin: 0 auto;
+    }
+
+    section.portfolio .flex {
+        gap: 60px;
+    }
+
+    footer .flex {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    footer .line-footer {
+        text-align: center;
+    }
 }
