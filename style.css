@@ -3,28 +3,40 @@
 ========================================== */
 /* Paleta de Cores Padrão (Light Mode) */
 :root {
-    --bg-main: #FFFFFF;
-    --bg-secondary: #F8FAFC;
-    --text-main: #0F172A;
-    --text-muted: #475569;
-    --accent: #2563EB;
-    --accent-hover: #1D4ED8;
-    --shadow: rgba(37, 99, 235, 0.12);
-    --input-bg: #F1F5F9;
-    --overlay: rgba(15, 23, 42, 0.7);
+    --bg-main: #FAF9F6;
+    /* Off-white orgânico */
+    --bg-secondary: #FFFFFF;
+    --text-main: #1F2937;
+    --text-muted: #6B7280;
+    --accent: #6366F1;
+    /* Indigo vibrante */
+    --accent-hover: #4F46E5;
+    --shadow: rgba(99, 102, 241, 0.15);
+    /* Sombra difusa da cor primária */
+    --input-bg: #F3F4F6;
+    --overlay: rgba(31, 41, 55, 0.7);
+    --glass-bg: rgba(250, 249, 246, 0.7);
+    /* Para o glassmorphism */
+    --blob-1: rgba(99, 102, 241, 0.15);
+    --blob-2: rgba(236, 72, 153, 0.15);
+    /* Pink vibrante para contraste no fundo */
 }
 
 /* Paleta de Cores Alternativa (Dark Mode) - Ativada via JS */
 [data-theme="dark"] {
-    --bg-main: #0F172A;
-    --bg-secondary: #1E293B;
-    --text-main: #F8FAFC;
-    --text-muted: #94A3B8;
-    --accent: #3B82F6;
-    --accent-hover: #60A5FA;
-    --shadow: rgba(0, 0, 0, 0.4);
-    --input-bg: #334155;
-    --overlay: rgba(15, 23, 42, 0.85);
+    --bg-main: #0B0F19;
+    /* Midnight blue muito escuro */
+    --bg-secondary: #131B2F;
+    --text-main: #F9FAFB;
+    --text-muted: #9CA3AF;
+    --accent: #818CF8;
+    --accent-hover: #A5B4FC;
+    --shadow: rgba(0, 0, 0, 0.5);
+    --input-bg: #1F2937;
+    --overlay: rgba(11, 15, 25, 0.85);
+    --glass-bg: rgba(11, 15, 25, 0.6);
+    --blob-1: rgba(129, 140, 248, 0.15);
+    --blob-2: rgba(244, 114, 182, 0.15);
 }
 
 /* ==========================================
@@ -49,6 +61,47 @@ body {
     background-color: var(--bg-main);
     color: var(--text-main);
     min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Background Blobs Orgânicos para vida ao layout */
+body::before,
+body::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: -1;
+    pointer-events: none;
+    animation: blob-float 15s infinite alternate ease-in-out;
+}
+
+body::before {
+    top: 10%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: var(--blob-1);
+}
+
+body::after {
+    bottom: 20%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: var(--blob-2);
+    animation-delay: -7.5s;
+}
+
+@keyframes blob-float {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(50px, 100px) scale(1.1);
+    }
 }
 
 /* Container principal para limitar a largura do conteúdo e centralizar */
@@ -103,7 +156,10 @@ header {
     position: sticky;
     top: 0;
     z-index: 9999;
-    background-color: var(--bg-main);
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     transition: top 0.4s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
@@ -321,16 +377,20 @@ section.especialidades .flex {
 
 .especialidades .especialidades-box {
     color: var(--text-main);
-    background-color: var(--bg-secondary);
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(128, 128, 128, 0.1);
     padding: 40px;
-    border-radius: 20px;
+    border-radius: 24px;
     margin-top: 45px;
-    transition: .2s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .especialidades .especialidades-box:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px var(--shadow);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px var(--shadow);
+    border-color: var(--accent);
 }
 
 .especialidades .especialidades-box i {
@@ -402,52 +462,133 @@ section.portfolio {
 }
 
 section.portfolio .flex {
-    justify-content: space-around;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
     margin-top: 60px;
 }
 
-/* Evita quebra do layout Flexbox ao usar links */
-section.portfolio .flex a {
-    display: block;
-    text-decoration: none;
-}
-
-.img-port {
+/* Cartões do Portfólio */
+.portfolio-card {
     width: 360px;
-    height: 460px;
-    background-size: cover;
-    background-position: 100% 0%;
-    transition: background-position 0.5s ease-in-out;
-    /* Anima o pan da imagem */
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(128, 128, 128, 0.1);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
-    border-radius: 40px;
-    position: relative;
+    text-decoration: none;
+    color: var(--text-main);
 }
 
-.img-port:hover {
-    background-position: 100% 100%;
+.portfolio-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px var(--shadow);
+    border-color: var(--accent);
 }
 
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
+.port-img-container {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.port-img-container img {
     width: 100%;
     height: 100%;
-    background-color: var(--overlay);
-    border-radius: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    font-weight: 600;
-    color: #fff;
-    opacity: 0;
-    transition: .5s;
+    object-fit: cover;
+    transition: transform 0.5s ease;
 }
 
-.overlay:hover {
-    opacity: 1;
+.portfolio-card:hover .port-img-container img {
+    transform: scale(1.1);
+}
+
+.port-info {
+    padding: 25px;
+    text-align: center;
+}
+
+.port-info strong {
+    display: block;
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+
+.port-info p {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* --- 5.5 CERTIFICADOS --- */
+section.certificados {
+    padding: 80px 4%;
+}
+
+section.certificados .flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 60px;
+}
+
+.certificado-card {
+    display: block;
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(128, 128, 128, 0.1);
+    border-radius: 24px;
+    width: 360px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    color: var(--text-main);
+    cursor: pointer;
+}
+
+.certificado-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px var(--shadow);
+    border-color: var(--accent);
+}
+
+.cert-img-container {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.cert-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.certificado-card:hover .cert-img-container img {
+    transform: scale(1.1);
+}
+
+.cert-info {
+    padding: 25px;
+    text-align: center;
+}
+
+.cert-info h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: var(--text-main);
+}
+
+.cert-info p {
+    font-size: 14px;
+    color: var(--text-muted);
 }
 
 /* --- 5.5 FORMULÁRIO DE CONTATO --- */
@@ -456,7 +597,8 @@ section.formulario {
 }
 
 form {
-    max-width: 650px;  /* Aumentamos de 500px para 650px */
+    max-width: 650px;
+    /* Aumentamos de 500px para 650px */
     margin: 40px auto 0 auto;
     display: flex;
     justify-content: center;
@@ -468,13 +610,22 @@ form {
 form input,
 form textarea {
     width: 100%;
-    background-color: var(--input-bg);
-    border: 0;
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(128, 128, 128, 0.2);
     outline: 0;
     padding: 20px 15px;
     border-radius: 15px;
     color: var(--text-main);
     font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+form input:focus,
+form textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 10px var(--shadow);
+    background-color: var(--input-bg);
 }
 
 form input::placeholder,
@@ -636,12 +787,9 @@ footer .line-footer p a {
         text-align: center;
     }
 
-    .img-sobre img,
-    .img-port {
+    .portfolio-card,
+    .certificado-card {
         width: 100%;
-    }
-
-    .img-port {
         max-width: 360px;
         margin: 0 auto;
     }

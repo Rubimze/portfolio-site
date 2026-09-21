@@ -31,6 +31,7 @@
                     <li><a href="#especialidades">Especialidades</a></li>
                     <li><a href="#sobre">Sobre</a></li>
                     <li><a href="#portfolio">Projetos</a></li>
+                    <li><a href="#certificados">Certificados</a></li>
                 </ul>
             </nav>
 
@@ -59,6 +60,7 @@
                         <li><a href="#especialidades">Especialidades</a></li>
                         <li><a href="#sobre">Sobre</a></li>
                         <li><a href="#portfolio">Projetos</a></li>
+                        <li><a href="#certificados">Certificados</a></li>
                         <li><a href="#contato">Contato</a></li>
                     </ul>
                 </nav>
@@ -162,33 +164,71 @@
             <div class="interface">
                 <h2 class="titulo">MEU <span>PORTFÓLIO.</span></h2>
                 <div class="flex">
-                    <a href="https://qrcode-front-rust.vercel.app/" target="_blank">
-                        <div class="img-port" style="background-image: url(images/QRCode.png);">
-                            <div class="overlay">
-                                <strong>Gerador de QR Code</strong><br>
-                                <span style="font-size: 14px; font-weight: 300;">Java 21, Spring Boot, AWS S3,
-                                    Docker</span>
-                            </div>
+                    <a href="https://qrcode-front-rust.vercel.app/" target="_blank" class="portfolio-card">
+                        <div class="port-img-container">
+                            <img src="images/QRCode.png" alt="Gerador de QR Code">
+                        </div>
+                        <div class="port-info">
+                            <strong>Gerador de QR Code</strong>
+                            <p>Java 21, Spring Boot, AWS S3, Docker</p>
                         </div>
                     </a>
 
-                    <a href="#" target="_blank">
-                        <div class="img-port" style="background-image: url(images/imagem-cadastro.png);">
-                            <div class="overlay">
-                                <strong>Cadastro Clientes API</strong><br>
-                                <span style="font-size: 14px; font-weight: 300;">Java 21, Spring Boot, JPA/Hibernate,
-                                    H2, Swagger</span>
-                            </div>
+                    <a href="#" target="_blank" class="portfolio-card">
+                        <div class="port-img-container">
+                            <img src="images/imagem-cadastro.png" alt="Cadastro Clientes API">
+                        </div>
+                        <div class="port-info">
+                            <strong>Cadastro Clientes API</strong>
+                            <p>Java 21, Spring Boot, JPA/Hibernate, H2, Swagger</p>
                         </div>
                     </a>
 
-                    <a href="#" target="_blank">
-                        <div class="img-port" style="background-image: url(images/imagem-dslist.png);">
-                            <div class="overlay">
-                                <strong>DSList</strong><br>
-                                <span style="font-size: 14px; font-weight: 300;">Java 21, Spring Boot, REST API,
-                                    JPA/Hibernate</span>
-                            </div>
+                    <a href="#" target="_blank" class="portfolio-card">
+                        <div class="port-img-container">
+                            <img src="images/imagem-dslist.png" alt="DSList">
+                        </div>
+                        <div class="port-info">
+                            <strong>DSList</strong>
+                            <p>Java 21, Spring Boot, REST API, JPA/Hibernate</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="certificados" id="certificados">
+            <div class="interface">
+                <h2 class="titulo">MEUS <span>CERTIFICADOS.</span></h2>
+                <div class="flex">
+                    <a href="images/certificados/UNA_Certificado.pdf" target="_blank" class="certificado-card">
+                        <div class="cert-img-container">
+                            <img src="images/certificados/UNA_Certificado.png"
+                                alt="Certificado Especialização em Tecnologia Java">
+                        </div>
+                        <div class="cert-info">
+                            <h3>Especialização em Tecnologia Java</h3>
+                            <p>UTFPR - 2024</p>
+                        </div>
+                    </a>
+                    <a href="images/certificados/Cisco_Certificado.pdf" target="_blank" class="certificado-card">
+                        <div class="cert-img-container">
+                            <img src="images/certificados/Cisco_Certificado.png"
+                                alt="Certificado Desenvolvimento Backend Java">
+                        </div>
+                        <div class="cert-info">
+                            <h3>Desenvolvimento Backend Java</h3>
+                            <p>Alura / Oracle Next Education</p>
+                        </div>
+                    </a>
+                    <a href="images/certificados/API_Rest_Certificado.pdf" target="_blank" class="certificado-card">
+                        <div class="cert-img-container">
+                            <img src="images/certificados/CI&W_Certificado.png"
+                                alt="Certificado Spring Boot 3 - API Rest">
+                        </div>
+                        <div class="cert-info">
+                            <h3>Spring Boot 3 - API Rest</h3>
+                            <p>Udemy</p>
                         </div>
                     </a>
                 </div>
