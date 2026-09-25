@@ -54,6 +54,7 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 100px;
+    overscroll-behavior-x: none;
 }
 
 /* Cor de fundo base e altura mínima cobrindo a tela toda */
@@ -63,11 +64,19 @@ body {
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
+    overscroll-behavior-x: none;
+}
+
+/* Wrapper para conter vazamentos horizontais sem quebrar o header sticky */
+.overflow-wrapper {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
 }
 
 /* Background Blobs Orgânicos para vida ao layout */
-body::before,
-body::after {
+.overflow-wrapper::before,
+.overflow-wrapper::after {
     content: "";
     position: absolute;
     border-radius: 50%;
@@ -77,7 +86,7 @@ body::after {
     animation: blob-float 15s infinite alternate ease-in-out;
 }
 
-body::before {
+.overflow-wrapper::before {
     top: 10%;
     left: -10%;
     width: 600px;
@@ -85,7 +94,7 @@ body::before {
     background: var(--blob-1);
 }
 
-body::after {
+.overflow-wrapper::after {
     bottom: 20%;
     right: -10%;
     width: 500px;
@@ -459,19 +468,34 @@ section.sobre .flex {
 section.portfolio {
     padding: 80px 4%;
     box-shadow: 0 0 40px 10px var(--shadow);
+    overflow: hidden;
+    max-width: 100%;
 }
 
 section.portfolio .flex {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 40px;
-    justify-content: center;
-    margin-top: 60px;
+    justify-content: flex-start;
+    margin: 40px auto 0 auto;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    width: fit-content;
+    max-width: 100%;
+    padding: 20px 20px 40px 20px;
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+section.portfolio .flex::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Edge */
 }
 
 /* Cartões do Portfólio */
 .portfolio-card {
     width: 360px;
+    flex: 0 0 auto;
     background-color: var(--glass-bg);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -527,14 +551,28 @@ section.portfolio .flex {
 /* --- 5.5 CERTIFICADOS --- */
 section.certificados {
     padding: 80px 4%;
+    overflow: hidden;
+    max-width: 100%;
 }
 
 section.certificados .flex {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 30px;
-    justify-content: center;
-    margin-top: 60px;
+    justify-content: flex-start;
+    margin: 40px auto 0 auto;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    width: fit-content;
+    max-width: 100%;
+    padding: 20px 20px 40px 20px;
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+section.certificados .flex::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Edge */
 }
 
 .certificado-card {
@@ -545,6 +583,7 @@ section.certificados .flex {
     border: 1px solid rgba(128, 128, 128, 0.1);
     border-radius: 24px;
     width: 360px;
+    flex: 0 0 auto;
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     text-decoration: none;
@@ -591,7 +630,29 @@ section.certificados .flex {
     color: var(--text-muted);
 }
 
-/* --- 5.5 FORMULÁRIO DE CONTATO --- */
+/* --- 5.5.1 INDICADOR DE SCROLL --- */
+.scroll-indicator-container {
+    width: 100%;
+    max-width: 400px;
+    height: 4px;
+    background-color: var(--glass-bg);
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    margin: 30px auto 0 auto;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.scroll-indicator-bar {
+    height: 100%;
+    width: 0%;
+    background-color: var(--accent);
+    border-radius: 4px;
+    box-shadow: 0 0 10px var(--accent);
+    /* Tiramos a transition para o requestAnimationFrame cuidar de forma suave e contínua */
+}
+
+/* --- 5.6 FORMULÁRIO DE CONTATO --- */
 section.formulario {
     padding: 80px 4%;
 }
@@ -795,7 +856,12 @@ footer .line-footer p a {
     }
 
     section.portfolio .flex {
+        flex-direction: row;
         gap: 60px;
+    }
+
+    section.certificados .flex {
+        flex-direction: row;
     }
 
     footer .flex {
