@@ -47,17 +47,12 @@ if (temaSalvo === 'dark') {
 
 // Alternância entre os temas ao clicar no botão
 btnTema.addEventListener('click', () => {
-    const temaAtual = htmlTag.getAttribute('data-theme');
+    const isDark = htmlTag.getAttribute('data-theme') === 'dark';
+    const novoTema = isDark ? 'light' : 'dark';
     
-    if (temaAtual === 'dark') {
-        htmlTag.removeAttribute('data-theme'); // Volta pro claro
-        localStorage.setItem('tema', 'light');
-        iconeTema.classList.replace('bi-sun-fill', 'bi-moon-fill');
-    } else {
-        htmlTag.setAttribute('data-theme', 'dark'); // Ativa o escuro
-        localStorage.setItem('tema', 'dark');
-        iconeTema.classList.replace('bi-moon-fill', 'bi-sun-fill');
-    }
+    isDark ? htmlTag.removeAttribute('data-theme') : htmlTag.setAttribute('data-theme', 'dark');
+    localStorage.setItem('tema', novoTema);
+    iconeTema.classList.replace(isDark ? 'bi-sun-fill' : 'bi-moon-fill', isDark ? 'bi-moon-fill' : 'bi-sun-fill');
 });
 
 // ==========================================
