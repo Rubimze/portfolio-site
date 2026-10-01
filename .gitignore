@@ -1,0 +1,9 @@
+# Ficheiros de sistema do macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+/agents/
+
+# Variáveis de ambiente
+.env

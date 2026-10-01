@@ -63,7 +63,6 @@ body {
     color: var(--text-main);
     min-height: 100vh;
     position: relative;
-    overflow-x: hidden;
     overscroll-behavior-x: none;
 }
 
@@ -150,10 +149,13 @@ h2.titulo span {
 }
 
 /* Efeito hover genérico para botões */
-button:hover,
-form .mrs-enviar input:hover {
-    box-shadow: 0px 0px 15px var(--accent);
-    transform: scale(1.05);
+@media (hover: hover) {
+
+    button:hover,
+    form .mrs-enviar input:hover {
+        box-shadow: 0px 0px 15px var(--accent);
+        transform: scale(1.05);
+    }
 }
 
 /* ==========================================
@@ -244,6 +246,9 @@ header nav.menu-desktop ul li {
 .menu-mobile .mrs-fechar {
     padding: 20px 5%;
     cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
 }
 
 .menu-mobile .mrs-fechar i {
@@ -285,6 +290,10 @@ header nav.menu-desktop ul li {
 .mrs-abrir-menu {
     cursor: pointer;
     display: none;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
 }
 
 .mrs-abrir-menu i {
@@ -363,15 +372,16 @@ section.topo-do-site .flex {
 .topo-do-site .img-topo-do-site img {
     position: relative;
     animation: flutuar 2s ease-in-out infinite alternate;
+    will-change: transform; /* Promove para a GPU, salvando CPU */
 }
 
 @keyframes flutuar {
     0% {
-        top: 0;
+        transform: translateY(0);
     }
 
     100% {
-        top: 30px;
+        transform: translateY(30px);
     }
 }
 
@@ -459,9 +469,11 @@ section.sobre .flex {
     text-decoration: none;
 }
 
-.mrs-social .mrs-btn-social:hover {
-    box-shadow: 0px 0px 15px var(--accent);
-    transform: scale(1.05);
+@media (hover: hover) {
+    .mrs-social .mrs-btn-social:hover {
+        box-shadow: 0px 0px 15px var(--accent);
+        transform: scale(1.05);
+    }
 }
 
 /* --- 5.4 PORTFÓLIO --- */
@@ -474,14 +486,14 @@ section.portfolio {
 
 section.portfolio .flex {
     display: flex;
+    cursor: grab;
     flex-wrap: nowrap;
     gap: 40px;
     justify-content: flex-start;
     margin: 40px auto 0 auto;
     overflow-x: auto;
     overscroll-behavior-x: contain;
-    width: fit-content;
-    max-width: 100%;
+    width: 100%;
     padding: 20px 20px 40px 20px;
     scrollbar-width: none;
     /* Firefox */
@@ -508,10 +520,12 @@ section.portfolio .flex::-webkit-scrollbar {
     color: var(--text-main);
 }
 
-.portfolio-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 20px 40px var(--shadow);
-    border-color: var(--accent);
+@media (hover: hover) {
+    .portfolio-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px var(--shadow);
+        border-color: var(--accent);
+    }
 }
 
 .port-img-container {
@@ -557,14 +571,14 @@ section.certificados {
 
 section.certificados .flex {
     display: flex;
+    cursor: grab;
     flex-wrap: nowrap;
     gap: 30px;
     justify-content: flex-start;
     margin: 40px auto 0 auto;
     overflow-x: auto;
     overscroll-behavior-x: contain;
-    width: fit-content;
-    max-width: 100%;
+    width: 100%;
     padding: 20px 20px 40px 20px;
     scrollbar-width: none;
     /* Firefox */
@@ -591,10 +605,12 @@ section.certificados .flex::-webkit-scrollbar {
     cursor: pointer;
 }
 
-.certificado-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 20px 40px var(--shadow);
-    border-color: var(--accent);
+@media (hover: hover) {
+    .certificado-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px var(--shadow);
+        border-color: var(--accent);
+    }
 }
 
 .cert-img-container {
@@ -634,22 +650,70 @@ section.certificados .flex::-webkit-scrollbar {
 .scroll-indicator-container {
     width: 100%;
     max-width: 400px;
-    height: 4px;
-    background-color: var(--glass-bg);
-    border: 1px solid rgba(128, 128, 128, 0.2);
-    margin: 30px auto 0 auto;
-    border-radius: 4px;
-    overflow: hidden;
+    height: 30px; /* Campo de ação (hitbox) invisível */
+    margin: 15px auto 0 auto;
     position: relative;
+    cursor: pointer;
+    /* Remove background, overflow e borders daqui para não ser visível */
 }
 
+/* Fundo da barra (a linha estática) */
+.scroll-indicator-container::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    margin-top: -2px; /* Centraliza no Y */
+    background-color: var(--glass-bg);
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    border-radius: 4px;
+}
+
+/* Barra colorida progressiva estática */
 .scroll-indicator-bar {
-    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 4px;
+    margin-top: -2px;
     width: 0%;
     background-color: var(--accent);
     border-radius: 4px;
-    box-shadow: 0 0 10px var(--accent);
-    /* Tiramos a transition para o requestAnimationFrame cuidar de forma suave e contínua */
+    box-shadow: 0 0 5px var(--accent);
+    z-index: 1; 
+}
+
+/* Lupa/Onda localizada (Thumb invisível que acompanha o mouse e ganha vida) */
+.scroll-indicator-container::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: var(--mouse-x, 0px);
+    width: 20px;
+    height: 8px;
+    margin-top: -4px;
+    margin-left: -10px; /* centraliza a bolha no mouse */
+    background-color: var(--accent);
+    border-radius: 10px;
+    box-shadow: 0 0 15px var(--accent);
+    opacity: 0; 
+    pointer-events: none; /* Mouse ignora e foca no container */
+    z-index: 2;
+    transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-origin: center;
+}
+
+/* Aparece ao passar o mouse */
+.scroll-indicator-container:hover::after {
+    opacity: 0.6;
+}
+
+/* Fica mais forte e grossa ao clicar e arrastar */
+.scroll-indicator-container.is-scrubbing::after {
+    opacity: 1;
+    transform: scaleY(1.8) scaleX(1.5);
 }
 
 /* --- 5.6 FORMULÁRIO DE CONTATO --- */
@@ -773,6 +837,13 @@ footer .line-footer p a {
     background-color: rgba(239, 68, 68, 0.1);
     color: #ef4444;
     border: 1px solid #ef4444;
+}
+
+/* Classe ativada via JS para rolagem arrastando com o mouse */
+.is-dragging {
+    cursor: grabbing !important;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 /* ==========================================

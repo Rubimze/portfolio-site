@@ -6,6 +6,12 @@
     <meta name="description"
         content="Portfólio de Matheus Rubim, Desenvolvedor Backend focado no ecossistema Java. Confira meus projetos e especialidades.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script>
+        // Evita flash de tela branca no dark mode (FOUC) na inicialização
+        if (localStorage.getItem('tema') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -41,20 +47,20 @@
                 </a>
             </div>
 
-            <button id="mrs-tema" class="mrs-tema">
+            <button id="mrs-tema" class="mrs-tema" aria-label="Alternar tema claro e escuro">
                 <i class="bi bi-moon-fill"></i>
             </button>
 
-            <div class="mrs-abrir-menu" id="mrs-menu">
+            <button class="mrs-abrir-menu" id="mrs-menu" aria-label="Abrir menu">
                 <i class="bi bi-list"></i>
-            </div>
+            </button>
         </div>
     </header>
 
     <div class="menu-mobile" id="menu-mobile">
-        <div class="mrs-fechar" id="mrs-fechar">
+        <button class="mrs-fechar" id="mrs-fechar" aria-label="Fechar menu">
             <i class="bi bi-x"></i>
-        </div>
+        </button>
 
         <nav>
             <ul>
@@ -130,7 +136,7 @@
                 <div class="interface">
                     <div class="flex">
                         <div class="img-sobre">
-                            <img src="images/Logo cabeçalho.png" alt="Foto Matheus Rubim">
+                            <img src="images/Logo cabeçalho.png" alt="Foto Matheus Rubim" loading="lazy">
                         </div>
                         <div class="txt-sobre">
                             <h2>MUITO PRAZER, <span>SOU MATHEUS RUBIM.</span></h2>
@@ -145,12 +151,12 @@
                                 escaláveis. </p>
 
                             <div class="mrs-social">
-                                <a href="https://www.linkedin.com/in/matheusrubim/" target="_blank"
+                                <a href="https://www.linkedin.com/in/matheusrubim/" target="_blank" rel="noopener noreferrer"
                                     class="mrs-btn-social" aria-label="LinkedIn" title="Acessar meu LinkedIn">
                                     <i class="bi bi-linkedin"></i>
                                 </a>
 
-                                <a href="https://github.com/Rubimze" class="mrs-btn-social" target="_blank"
+                                <a href="https://github.com/Rubimze" class="mrs-btn-social" target="_blank" rel="noopener noreferrer"
                                     aria-label="GitHub" title="Ver meus projetos no GitHub">
                                     <i class="bi bi-github"></i>
                                 </a>
@@ -170,9 +176,9 @@
                 <div class="interface">
                     <h2 class="titulo">MEU <span>PORTFÓLIO.</span></h2>
                     <div class="flex">
-                        <a href="https://qrcode-front-rust.vercel.app/" target="_blank" class="portfolio-card">
+                        <a href="https://qrcode-front-rust.vercel.app/" target="_blank" rel="noopener noreferrer" class="portfolio-card">
                             <div class="port-img-container">
-                                <img src="images/QRCode.png" alt="Gerador de QR Code">
+                                <img src="images/QRCode.png" alt="Gerador de QR Code" loading="lazy">
                             </div>
                             <div class="port-info">
                                 <strong>Gerador de QR Code</strong>
@@ -180,9 +186,9 @@
                             </div>
                         </a>
 
-                        <a href="#" target="_blank" class="portfolio-card">
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="portfolio-card">
                             <div class="port-img-container">
-                                <img src="images/imagem-cadastro.png" alt="Cadastro Clientes API">
+                                <img src="images/imagem-cadastro.png" alt="Cadastro Clientes API" loading="lazy">
                             </div>
                             <div class="port-info">
                                 <strong>Cadastro Clientes API</strong>
@@ -190,9 +196,9 @@
                             </div>
                         </a>
 
-                        <a href="#" target="_blank" class="portfolio-card">
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="portfolio-card">
                             <div class="port-img-container">
-                                <img src="images/imagem-dslist.png" alt="DSList">
+                                <img src="images/imagem-dslist.png" alt="DSList" loading="lazy">
                             </div>
                             <div class="port-info">
                                 <strong>DSList</strong>
@@ -212,11 +218,11 @@
                     <h2 class="titulo">MEUS <span>CERTIFICADOS.</span></h2>
                     <div class="flex">
 
-                        <a href="images/certificados/UNA - Análise e Desenvolvimento de Sistemas.pdf" target="_blank"
+                        <a href="images/certificados/UNA - Análise e Desenvolvimento de Sistemas.pdf" target="_blank" rel="noopener noreferrer"
                             class="certificado-card">
                             <div class="cert-img-container">
-                                <img src="images/certificados/UNA - Análise e Desenvolvimento de Sistemas.png"
-                                    alt="Graduação - ADS">
+                                <img src="images/certificados/UNA - Análise e Desenvolvimento de Sistemas.png" loading="lazy" loading="lazy"
+                                    alt="Graduação - ADS" loading="lazy">
                             </div>
                             <div class="cert-info">
                                 <h3>Análise e Desenvolvimento de Sistemas</h3>
@@ -225,11 +231,11 @@
                             </div>
                         </a>
 
-                        <a href="images/certificados/Cisco - Network Essencials.pdf" target="_blank"
+                        <a href="images/certificados/Cisco - Network Essencials.pdf" target="_blank" rel="noopener noreferrer"
                             class="certificado-card">
                             <div class="cert-img-container">
-                                <img src="images/certificados/Cisco - Network Essencials.png"
-                                    alt="Cisco - Networking Essencials">
+                                <img src="images/certificados/Cisco - Network Essencials.png" loading="lazy" loading="lazy"
+                                    alt="Cisco - Networking Essencials" loading="lazy">
                             </div>
                             <div class="cert-info">
                                 <h3>Networking Essencials</h3>
@@ -238,10 +244,10 @@
                             </div>
                         </a>
                         <a href="images/certificados/Udemy - Java COMPLETO Programação Orientada a Objetos.pdf"
-                            target="_blank" class="certificado-card">
+                            target="_blank" rel="noopener noreferrer" class="certificado-card">
                             <div class="cert-img-container">
-                                <img src="images/certificados/Udemy - Java COMPLETO Programação Orientada a Objetos.png"
-                                    alt="Java Completo e POO">
+                                <img src="images/certificados/Udemy - Java COMPLETO Programação Orientada a Objetos.png" loading="lazy" loading="lazy"
+                                    alt="Java Completo e POO" loading="lazy">
                             </div>
                             <div class="cert-info">
                                 <h3>Java Completo e POO</h3>
@@ -250,10 +256,10 @@
                             </div>
                         </a>
 
-                        <a href="images/certificados/DIO - Bootcamp CI&T.pdf" target="_blank" class="certificado-card">
+                        <a href="images/certificados/DIO - Bootcamp CI&T.pdf" target="_blank" rel="noopener noreferrer" class="certificado-card">
                             <div class="cert-img-container">
-                                <img src="images/certificados/DIO - Bootcamp CI&T.png"
-                                    alt="Certificado Spring Boot 3 - API Rest">
+                                <img src="images/certificados/DIO - Bootcamp CI&T.png" loading="lazy" loading="lazy"
+                                    alt="Certificado Spring Boot 3 - API Rest" loading="lazy">
                             </div>
                             <div class="cert-info">
                                 <h3>Bootcamp Backend Java & AWS</h3>
@@ -262,11 +268,11 @@
                             </div>
                         </a>
 
-                        <a href="images/certificados/PRODABEL - Programação Web 1.pdf" target="_blank"
+                        <a href="images/certificados/PRODABEL - Programação Web 1.pdf" target="_blank" rel="noopener noreferrer"
                             class="certificado-card">
                             <div class="cert-img-container">
-                                <img src="images/certificados/PRODABEL - Programação Web 1.png"
-                                    alt="Certificado Spring Boot 3 - API Rest">
+                                <img src="images/certificados/PRODABEL - Programação Web 1.png" loading="lazy" loading="lazy"
+                                    alt="Certificado Spring Boot 3 - API Rest" loading="lazy">
                             </div>
                             <div class="cert-info">
                                 <h3>HTML e CSS</h3>
@@ -275,11 +281,11 @@
                             </div>
                         </a>
 
-                        <a href="images/certificados/PRODABEL - Programação Web 2.pdf" target="_blank"
+                        <a href="images/certificados/PRODABEL - Programação Web 2.pdf" target="_blank" rel="noopener noreferrer"
                             class="certificado-card">
                             <div class="cert-img-container">
-                                <img src="images/certificados/PRODABEL - Programação Web 2.png"
-                                    alt="Certificado Spring Boot 3 - API Rest">
+                                <img src="images/certificados/PRODABEL - Programação Web 2.png" loading="lazy" loading="lazy"
+                                    alt="Certificado Spring Boot 3 - API Rest" loading="lazy">
                             </div>
                             <div class="cert-info">
                                 <h3>Lógica de Programação e Javascript</h3>
@@ -288,10 +294,10 @@
                             </div>
                         </a>
 
-                        <a href="images/certificados/EJEF - GoogleDay.pdf" target="_blank" class="certificado-card">
+                        <a href="images/certificados/EJEF - GoogleDay.pdf" target="_blank" rel="noopener noreferrer" class="certificado-card">
                             <div class="cert-img-container">
-                                <img src="images/certificados/EJEF - GoogleDay.png"
-                                    alt="Certificado Spring Boot 3 - API Rest">
+                                <img src="images/certificados/EJEF - GoogleDay.png" loading="lazy" loading="lazy"
+                                    alt="Certificado Spring Boot 3 - API Rest" loading="lazy">
                             </div>
                             <div class="cert-info">
                                 <h3>Imersão GoogleDay</h3>
@@ -331,15 +337,15 @@
                 <div class="line-footer">
                     <div class="flex">
                         <div class="logo-footer">
-                            <img src="images/Logo cabeçalho.png" alt="Logotipo MRS">
+                            <img src="images/Logo cabeçalho.png" alt="Logotipo MRS" loading="lazy">
                         </div>
                         <div class="mrs-social">
-                            <a href="https://www.linkedin.com/in/matheusrubim/" target="_blank" class="mrs-btn-social"
+                            <a href="https://www.linkedin.com/in/matheusrubim/" target="_blank" rel="noopener noreferrer" class="mrs-btn-social"
                                 aria-label="LinkedIn" title="Acessar meu LinkedIn">
                                 <i class="bi bi-linkedin"></i>
                             </a>
 
-                            <a href="https://github.com/Rubimze" class="mrs-btn-social" target="_blank"
+                            <a href="https://github.com/Rubimze" class="mrs-btn-social" target="_blank" rel="noopener noreferrer"
                                 aria-label="GitHub" title="Ver meus projetos no GitHub">
                                 <i class="bi bi-github"></i>
                             </a>

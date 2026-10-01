@@ -66,72 +66,171 @@ btnTema.addEventListener('click', () => {
 let ultimoScroll = 0; // Armazena a posição anterior para comparar se desceu ou subiu
 const header = document.querySelector('header');
 
-// Fica escutando os eventos de rolagem da tela
+// Fica escutando os eventos de rolagem da tela (Otimizado com rAF)
+let isScrolling = false;
 window.addEventListener('scroll', () => {
-    const scrollAtual = window.scrollY;
+    if (!isScrolling) {
+        window.requestAnimationFrame(() => {
+            const scrollAtual = window.scrollY;
 
-    // Aplica uma sombra abaixo do menu se a página não estiver no topo (posição 0)
-    if (scrollAtual > 50) {
-        header.classList.add('header-com-sombra');
-    } else {
-        header.classList.remove('header-com-sombra');
+            if (scrollAtual > 50) {
+                header.classList.add('header-com-sombra');
+            } else {
+                header.classList.remove('header-com-sombra');
+            }
+
+            if (scrollAtual > ultimoScroll && scrollAtual > 150) {
+                header.classList.add('header-escondido');
+            } else {
+                header.classList.remove('header-escondido');
+            }
+
+            ultimoScroll = scrollAtual;
+            isScrolling = false;
+        });
+        isScrolling = true;
     }
-
-    // Esconde o menu se rolou para baixo (e passou de 150px) / Mostra se rolou para cima
-    if (scrollAtual > ultimoScroll && scrollAtual > 150) {
-        header.classList.add('header-escondido');
-    } else {
-        header.classList.remove('header-escondido');
-    }
-
-    // Atualiza a posição registrada para a próxima verificação
-    ultimoScroll = scrollAtual;
 });
 
 // ==========================================
-// AUTO-SCROLL DA SEÇÃO DE CERTIFICADOS
+// AUTO-SCROLL DOS CARROSSEIS (PORTFÓLIO E CERTIFICADOS)
 // ==========================================
-const containerCertificados = document.querySelector('.certificados .flex');
-const scrollBar = document.getElementById('scroll-bar');
+function initCarrossel(selectorContainer, selectorBarra) {
+    const container = document.querySelector(selectorContainer);
+    const scrollBar = document.getElementById(selectorBarra);
+    
+    if (!container) return;
 
-if (containerCertificados) {
-    let scrollSpeed = 0.5; // Velocidade do movimento reduzida
-    let isScrollingRight = true; // Direção
-    let isPaused = false; // Controle de pausa
-    let currentScroll = 0; // Armazena o valor exato (com decimais)
-
-    // Pausa a animação ao colocar o mouse por cima (ou tocar)
-    containerCertificados.addEventListener('mouseenter', () => isPaused = true);
-    containerCertificados.addEventListener('mouseleave', () => {
+    let scrollSpeed = 0.5;
+    let isScrollingRight = true;
+    let isPaused = false;
+    let currentScroll = 0;
+    
+    // Acessibilidade e Pausa no Hover/Touch
+    const pausar = () => isPaused = true;
+    const retomar = () => {
         isPaused = false;
-        currentScroll = containerCertificados.scrollLeft; // Sincroniza ao soltar
+        currentScroll = container.scrollLeft;
+    };
+
+    container.addEventListener('mouseenter', pausar);
+    container.addEventListener('mouseleave', retomar);
+    container.addEventListener('touchstart', pausar);
+    container.addEventListener('touchend', () => setTimeout(retomar, 1000));
+    
+    // Acessibilidade (A11y): Pausa ao navegar com teclado (Tab)
+    container.addEventListener('focusin', pausar);
+    container.addEventListener('focusout', retomar);
+
+    // Drag-to-Scroll (Mouse)
+    let isDown = false;
+    let startX;
+    let scrollLeftStart;
+    let dragged = false;
+
+    container.addEventListener('mousedown', (e) => {
+        isDown = true;
+        dragged = false;
+        container.classList.add('is-dragging');
+        startX = e.pageX - container.offsetLeft;
+        scrollLeftStart = container.scrollLeft;
     });
-    containerCertificados.addEventListener('touchstart', () => isPaused = true);
-    containerCertificados.addEventListener('touchend', () => {
-        setTimeout(() => {
-            isPaused = false;
-            currentScroll = containerCertificados.scrollLeft; // Sincroniza ao soltar
-        }, 1000);
+
+    container.addEventListener('mouseup', () => {
+        isDown = false;
+        container.classList.remove('is-dragging');
+    });
+
+    container.addEventListener('mouseleave', () => {
+        isDown = false;
+        container.classList.remove('is-dragging');
+    });
+
+    container.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - container.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        if (Math.abs(walk) > 5) dragged = true;
+        container.scrollLeft = scrollLeftStart - walk;
+        currentScroll = container.scrollLeft;
+    });
+
+    // Prevenir clique e arrasto nativo da imagem
+    container.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            if (dragged) e.preventDefault();
+        });
+        link.addEventListener('dragstart', (e) => e.preventDefault());
+    });
+
+    let maxScroll = container.scrollWidth - container.clientWidth;
+    window.addEventListener('resize', () => {
+        maxScroll = container.scrollWidth - container.clientWidth;
     });
 
     // Permite o scroll manual sincronizado com a barra
-    containerCertificados.addEventListener('scroll', () => {
+    container.addEventListener('scroll', () => {
         if (isPaused) {
-            currentScroll = containerCertificados.scrollLeft;
+            currentScroll = container.scrollLeft;
         }
         if (scrollBar) {
-            const maxScroll = containerCertificados.scrollWidth - containerCertificados.clientWidth;
             if (maxScroll > 0) {
-                const percentage = (containerCertificados.scrollLeft / maxScroll) * 100;
+                const percentage = (container.scrollLeft / maxScroll) * 100;
                 scrollBar.style.width = `${percentage}%`;
             }
         }
     });
 
-    function autoScrollCertificados() {
-        const maxScroll = containerCertificados.scrollWidth - containerCertificados.clientWidth;
-        
-        // Se não tem overflow, esconde a barra e não move
+    // Torna o container da barra de rolagem interativo (clicável, arrastável e com lupa)
+    const scrollContainer = scrollBar ? scrollBar.parentElement : null;
+    if (scrollContainer) {
+        scrollContainer.style.cursor = 'pointer';
+        let isDraggingBar = false;
+
+        const updateMouseX = (e) => {
+            const rect = scrollContainer.getBoundingClientRect();
+            let mouseX = e.clientX - rect.left;
+            mouseX = Math.max(0, Math.min(rect.width, mouseX));
+            scrollContainer.style.setProperty('--mouse-x', `${mouseX}px`);
+            return mouseX / rect.width;
+        };
+
+        const handleBarScroll = (e) => {
+            let percentage = updateMouseX(e);
+            const maxScrollLocal = container.scrollWidth - container.clientWidth;
+            container.scrollLeft = percentage * maxScrollLocal;
+            currentScroll = container.scrollLeft;
+        };
+
+        scrollContainer.addEventListener('mousemove', (e) => {
+            if (!isDraggingBar) updateMouseX(e);
+        });
+
+        scrollContainer.addEventListener('mousedown', (e) => {
+            isDraggingBar = true;
+            isPaused = true;
+            scrollContainer.classList.add('is-scrubbing');
+            handleBarScroll(e);
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (isDraggingBar) {
+                e.preventDefault();
+                handleBarScroll(e);
+            }
+        });
+
+        window.addEventListener('mouseup', () => {
+            if (isDraggingBar) {
+                isDraggingBar = false;
+                isPaused = false;
+                scrollContainer.classList.remove('is-scrubbing');
+            }
+        });
+    }
+
+    function autoScroll() {
         if (maxScroll <= 0) {
             if (scrollBar && scrollBar.parentElement) scrollBar.parentElement.style.display = 'none';
         } else {
@@ -140,7 +239,7 @@ if (containerCertificados) {
             if (!isPaused) {
                 if (isScrollingRight) {
                     currentScroll += scrollSpeed;
-                    if (currentScroll + containerCertificados.clientWidth >= containerCertificados.scrollWidth - 2) {
+                    if (currentScroll >= maxScroll - 2) {
                         isScrollingRight = false;
                     }
                 } else {
@@ -149,84 +248,16 @@ if (containerCertificados) {
                         isScrollingRight = true;
                     }
                 }
-                containerCertificados.scrollLeft = currentScroll;
+                container.scrollLeft = currentScroll;
             }
         }
-        
-        requestAnimationFrame(autoScrollCertificados);
+        requestAnimationFrame(autoScroll);
     }
 
     // Inicia a animação
-    requestAnimationFrame(autoScrollCertificados);
+    requestAnimationFrame(autoScroll);
 }
 
-// ==========================================
-// AUTO-SCROLL DA SEÇÃO DE PORTFÓLIO
-// ==========================================
-const containerPortfolio = document.querySelector('.portfolio .flex');
-const scrollBarPortfolio = document.getElementById('scroll-bar-portfolio');
-
-if (containerPortfolio) {
-    let scrollSpeedPort = 0.5; // Velocidade do movimento
-    let isScrollingRightPort = true; // Direção
-    let isPausedPort = false; // Controle de pausa
-    let currentScrollPort = 0; // Armazena o valor exato (com decimais)
-
-    // Pausa a animação ao colocar o mouse por cima (ou tocar)
-    containerPortfolio.addEventListener('mouseenter', () => isPausedPort = true);
-    containerPortfolio.addEventListener('mouseleave', () => {
-        isPausedPort = false;
-        currentScrollPort = containerPortfolio.scrollLeft; // Sincroniza ao soltar
-    });
-    containerPortfolio.addEventListener('touchstart', () => isPausedPort = true);
-    containerPortfolio.addEventListener('touchend', () => {
-        setTimeout(() => {
-            isPausedPort = false;
-            currentScrollPort = containerPortfolio.scrollLeft; // Sincroniza ao soltar
-        }, 1000);
-    });
-
-    // Permite o scroll manual sincronizado com a barra
-    containerPortfolio.addEventListener('scroll', () => {
-        if (isPausedPort) {
-            currentScrollPort = containerPortfolio.scrollLeft;
-        }
-        if (scrollBarPortfolio) {
-            const maxScrollPort = containerPortfolio.scrollWidth - containerPortfolio.clientWidth;
-            if (maxScrollPort > 0) {
-                const percentagePort = (containerPortfolio.scrollLeft / maxScrollPort) * 100;
-                scrollBarPortfolio.style.width = `${percentagePort}%`;
-            }
-        }
-    });
-
-    function autoScrollPortfolio() {
-        const maxScrollPort = containerPortfolio.scrollWidth - containerPortfolio.clientWidth;
-
-        if (maxScrollPort <= 0) {
-            if (scrollBarPortfolio && scrollBarPortfolio.parentElement) scrollBarPortfolio.parentElement.style.display = 'none';
-        } else {
-            if (scrollBarPortfolio && scrollBarPortfolio.parentElement) scrollBarPortfolio.parentElement.style.display = 'block';
-            
-            if (!isPausedPort) {
-                if (isScrollingRightPort) {
-                    currentScrollPort += scrollSpeedPort;
-                    if (currentScrollPort + containerPortfolio.clientWidth >= containerPortfolio.scrollWidth - 2) {
-                        isScrollingRightPort = false;
-                    }
-                } else {
-                    currentScrollPort -= scrollSpeedPort;
-                    if (currentScrollPort <= 0) {
-                        isScrollingRightPort = true;
-                    }
-                }
-                containerPortfolio.scrollLeft = currentScrollPort;
-            }
-        }
-        
-        requestAnimationFrame(autoScrollPortfolio);
-    }
-
-    // Inicia a animação
-    requestAnimationFrame(autoScrollPortfolio);
-}
+// Inicializa os carrosseis
+initCarrossel('.certificados .flex', 'scroll-bar');
+initCarrossel('.portfolio .flex', 'scroll-bar-portfolio');
