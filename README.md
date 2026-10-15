@@ -8,7 +8,6 @@
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript ES6+](https://img.shields.io/badge/JavaScript_ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![Java Backend](https://img.shields.io/badge/API_Contato-Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-success?style=for-the-badge)
 
 <p align="center">
   <strong>Interface desenvolvida em Vanilla Web Technologies, hospedada no GitHub Pages e integrada à API Java.</strong>
